@@ -1,0 +1,587 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&display=swap');
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+.scene {
+  min-height: 900px;
+  background: #0d0208;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, #2a0a1a 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, #1a0614 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, #1a0614 0%, transparent 60%);
+}
+
+.particle-layer { position:absolute; inset:0; pointer-events:none; }
+
+.card-outer {
+  position: relative;
+  width: min(520px, 96vw);
+  z-index: 10;
+}
+
+.card-border {
+  position: absolute;
+  inset: -2px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #c9a84c, #f0d080, #8b5e1a, #f0d080, #c9a84c);
+  z-index: 0;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(160deg, #13010d 0%, #1e0516 50%, #0f010a 100%);
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.card-inner { padding: 44px 36px 40px; position: relative; z-index: 2; }
+
+.gold-ornament-top {
+  text-align: center;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.ornament-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 6px;
+}
+
+.ornament-bar {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, #c9a84c 40%, #f0d080 60%, #c9a84c, transparent);
+}
+
+.ornament-diamond {
+  width: 8px;
+  height: 8px;
+  background: #f0d080;
+  transform: rotate(45deg);
+  margin: 0 10px;
+  box-shadow: 0 0 8px #f0d08066;
+}
+
+.ornament-center {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: #f0d080;
+  letter-spacing: 8px;
+  text-shadow: 0 0 20px #c9a84c88;
+  margin: 4px 0;
+}
+
+.photo-frame {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 28px;
+  position: relative;
+}
+
+.photo-border-outer {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9a84c, #f0d080, #8b5e1a, #f0d080, #c9a84c);
+  animation: spinGold 8s linear infinite;
+}
+
+@keyframes spinGold {
+  to { transform: rotate(360deg); }
+}
+
+.photo-border-inner {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: #13010d;
+}
+
+.photo-circle {
+  position: relative;
+  z-index: 2;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2a0a20, #1a0614);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.photo-silhouette {
+  opacity: 0.6;
+}
+
+.photo-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #c9a84c;
+  text-transform: uppercase;
+  opacity: 0.8;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.photo-sparkle-1, .photo-sparkle-2, .photo-sparkle-3, .photo-sparkle-4 {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: #f0d080;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: sparklePulse 2s ease-in-out infinite;
+}
+.photo-sparkle-1 { top: 5px; right: 12px; width:10px; height:10px; animation-delay:0s; }
+.photo-sparkle-2 { bottom: 8px; left: 8px; width:7px; height:7px; animation-delay:0.6s; }
+.photo-sparkle-3 { top: 20px; left: 2px; width:6px; height:6px; animation-delay:1.2s; }
+.photo-sparkle-4 { bottom: 20px; right: 2px; width:8px; height:8px; animation-delay:0.3s; }
+
+@keyframes sparklePulse {
+  0%,100% { opacity:0.3; transform:scale(0.8); }
+  50% { opacity:1; transform:scale(1.2); }
+}
+
+.wishes-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  color: #c9a84c;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.main-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 8vw, 52px);
+  font-weight: 300;
+  color: #fff;
+  text-align: center;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  text-shadow: 0 0 40px rgba(201,168,76,0.3);
+}
+
+.main-title-italic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 6vw, 40px);
+  font-weight: 300;
+  font-style: italic;
+  color: #f0d080;
+  text-align: center;
+  margin-bottom: 24px;
+  text-shadow: 0 0 30px #c9a84c55;
+  letter-spacing: 2px;
+}
+
+.rose-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 20px 0 24px;
+}
+
+.rose-svg { flex-shrink: 0; }
+
+.mid-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto 24px;
+  width: 80%;
+}
+
+.mid-bar {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a84c88);
+}
+.mid-bar.right { background: linear-gradient(90deg, #c9a84c88, transparent); }
+
+.mid-gem {
+  width: 6px; height: 6px;
+  background: #c9a84c;
+  transform: rotate(45deg);
+}
+
+.message {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(15px, 3vw, 18px);
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255,255,255,0.72);
+  text-align: center;
+  line-height: 1.95;
+  margin-bottom: 28px;
+  padding: 0 8px;
+}
+
+.message em {
+  color: #f0d080;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.pog-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 0 auto 28px;
+  width: fit-content;
+  border: 1px solid #c9a84c55;
+  border-radius: 40px;
+  padding: 8px 20px;
+  position: relative;
+}
+
+.pog-badge::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 40px;
+  background: linear-gradient(90deg, transparent 10%, #c9a84c44 50%, transparent 90%);
+}
+
+.pog-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  color: #c9a84c;
+  text-transform: uppercase;
+}
+
+.music-notes-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.mnote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: #c9a84c;
+  opacity: 0.7;
+  animation: noteDance 3s ease-in-out infinite;
+}
+.mnote:nth-child(1) { animation-delay: 0s; font-size: 16px; }
+.mnote:nth-child(2) { animation-delay: 0.5s; }
+.mnote:nth-child(3) { animation-delay: 1s; font-size: 16px; }
+.mnote:nth-child(4) { animation-delay: 0.3s; }
+.mnote:nth-child(5) { animation-delay: 0.8s; font-size: 16px; }
+
+@keyframes noteDance {
+  0%,100% { transform: translateY(0) rotate(-4deg); opacity:0.5; }
+  50% { transform: translateY(-6px) rotate(4deg); opacity:1; }
+}
+
+.sig-area {
+  border-top: 1px solid #c9a84c33;
+  padding-top: 22px;
+  text-align: center;
+}
+
+.sig-from {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: rgba(201,168,76,0.5);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.sig-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 1px;
+}
+
+.bottom-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.b-star {
+  width: 10px; height: 10px;
+  background: #c9a84c;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  opacity: 0.6;
+  animation: sparklePulse 2.5s ease-in-out infinite;
+}
+.b-star:nth-child(2) { width:14px; height:14px; opacity:0.9; animation-delay:0.4s; }
+.b-star:nth-child(3) { animation-delay:0.8s; }
+
+.corner-ornament {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: 3;
+  pointer-events: none;
+}
+.corner-ornament.tl { top: 16px; left: 16px; }
+.corner-ornament.tr { top: 16px; right: 16px; transform: scaleX(-1); }
+.corner-ornament.bl { bottom: 16px; left: 16px; transform: scaleY(-1); }
+.corner-ornament.br { bottom: 16px; right: 16px; transform: scale(-1, -1); }
+
+.card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 60% 30% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 20% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 70%);
+}
+
+</style>
+
+<div class="scene">
+  <div class="bg-layer"></div>
+  <canvas class="particle-layer" id="particles" width="520" height="900"></canvas>
+
+  <div class="card-outer">
+    <div class="card-border"></div>
+    <div class="card">
+      <div class="card-glow"></div>
+
+      <svg class="corner-ornament tl" viewBox="0 0 60 60" fill="none">
+        <path d="M4 56 L4 4 L56 4" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <path d="M4 4 L14 14" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
+        <circle cx="4" cy="4" r="2.5" fill="#f0d080" opacity="0.7"/>
+        <circle cx="56" cy="4" r="1.5" fill="#c9a84c" opacity="0.5"/>
+        <circle cx="4" cy="56" r="1.5" fill="#c9a84c" opacity="0.5"/>
+      </svg>
+      <svg class="corner-ornament tr" viewBox="0 0 60 60" fill="none">
+        <path d="M4 56 L4 4 L56 4" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <circle cx="4" cy="4" r="2.5" fill="#f0d080" opacity="0.7"/>
+        <circle cx="56" cy="4" r="1.5" fill="#c9a84c" opacity="0.5"/>
+        <circle cx="4" cy="56" r="1.5" fill="#c9a84c" opacity="0.5"/>
+      </svg>
+      <svg class="corner-ornament bl" viewBox="0 0 60 60" fill="none">
+        <path d="M4 56 L4 4 L56 4" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <circle cx="4" cy="4" r="2.5" fill="#f0d080" opacity="0.7"/>
+        <circle cx="56" cy="4" r="1.5" fill="#c9a84c" opacity="0.5"/>
+        <circle cx="4" cy="56" r="1.5" fill="#c9a84c" opacity="0.5"/>
+      </svg>
+      <svg class="corner-ornament br" viewBox="0 0 60 60" fill="none">
+        <path d="M4 56 L4 4 L56 4" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+        <circle cx="4" cy="4" r="2.5" fill="#f0d080" opacity="0.7"/>
+        <circle cx="56" cy="4" r="1.5" fill="#c9a84c" opacity="0.5"/>
+        <circle cx="4" cy="56" r="1.5" fill="#c9a84c" opacity="0.5"/>
+      </svg>
+
+      <div class="card-inner">
+
+        <div class="gold-ornament-top">
+          <div class="ornament-line">
+            <div class="ornament-bar"></div>
+            <div class="ornament-diamond"></div>
+            <div class="ornament-bar"></div>
+          </div>
+          <div class="ornament-center">✦ &nbsp; ✦ &nbsp; ✦</div>
+          <div class="ornament-line" style="margin-top:6px;">
+            <div class="ornament-bar"></div>
+            <div class="ornament-diamond"></div>
+            <div class="ornament-bar"></div>
+          </div>
+        </div>
+
+        <div class="photo-frame">
+          <div class="photo-border-outer"></div>
+          <div class="photo-border-inner"></div>
+          <div class="photo-circle" style="position: relative;">
+            <div class="photo-placeholder">
+             
+             <img 
+      src="./lady.jpeg" 
+      alt="Birthday star" 
+      style="
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        display: block;
+      "
+    >
+            </div>
+          </div>
+          <div class="photo-sparkle-1"></div>
+          <div class="photo-sparkle-2"></div>
+          <div class="photo-sparkle-3"></div>
+          <div class="photo-sparkle-4"></div>
+        </div>
+
+        <div class="wishes-label">a very special birthday wish</div>
+
+        <div class="main-title">Happy Birthday</div>
+        <div class="main-title-italic">to a Beautiful Soul</div>
+
+        <div class="rose-row">
+          <svg class="rose-svg" width="28" height="36" viewBox="0 0 28 36" fill="none">
+            <ellipse cx="14" cy="10" rx="7" ry="6" fill="#8b1a3a" opacity="0.9"/>
+            <ellipse cx="10" cy="13" rx="6" ry="5" fill="#a02050" opacity="0.85"/>
+            <ellipse cx="18" cy="13" rx="6" ry="5" fill="#9a1d48" opacity="0.85"/>
+            <ellipse cx="14" cy="16" rx="5" ry="4" fill="#c0325f" opacity="0.9"/>
+            <ellipse cx="14" cy="12" rx="3.5" ry="3" fill="#e05075" opacity="0.8"/>
+            <line x1="14" y1="20" x2="14" y2="34" stroke="#1a5c2a" stroke-width="1.5"/>
+            <ellipse cx="9" cy="27" rx="5" ry="3" fill="#1a5c2a" opacity="0.8" transform="rotate(-20 9 27)"/>
+          </svg>
+          <svg class="rose-svg" width="34" height="42" viewBox="0 0 34 42" fill="none">
+            <ellipse cx="17" cy="11" rx="9" ry="8" fill="#9a1a40" opacity="0.95"/>
+            <ellipse cx="11" cy="15" rx="8" ry="6" fill="#b52555" opacity="0.9"/>
+            <ellipse cx="23" cy="15" rx="8" ry="6" fill="#ae2050" opacity="0.9"/>
+            <ellipse cx="17" cy="19" rx="7" ry="5.5" fill="#cc3060" opacity="0.95"/>
+            <ellipse cx="17" cy="14" rx="4.5" ry="4" fill="#e84070" opacity="0.85"/>
+            <ellipse cx="17" cy="11" rx="2.5" ry="2.5" fill="#f06080" opacity="0.7"/>
+            <line x1="17" y1="24" x2="17" y2="40" stroke="#1a5c2a" stroke-width="2"/>
+            <ellipse cx="10" cy="32" rx="7" ry="4" fill="#1a5c2a" opacity="0.85" transform="rotate(-25 10 32)"/>
+            <ellipse cx="24" cy="36" rx="6" ry="3.5" fill="#1a5c2a" opacity="0.75" transform="rotate(20 24 36)"/>
+          </svg>
+          <svg class="rose-svg" width="28" height="36" viewBox="0 0 28 36" fill="none">
+            <ellipse cx="14" cy="10" rx="7" ry="6" fill="#8b1a3a" opacity="0.9"/>
+            <ellipse cx="10" cy="13" rx="6" ry="5" fill="#a02050" opacity="0.85"/>
+            <ellipse cx="18" cy="13" rx="6" ry="5" fill="#9a1d48" opacity="0.85"/>
+            <ellipse cx="14" cy="16" rx="5" ry="4" fill="#c0325f" opacity="0.9"/>
+            <ellipse cx="14" cy="12" rx="3.5" ry="3" fill="#e05075" opacity="0.8"/>
+            <line x1="14" y1="20" x2="14" y2="34" stroke="#1a5c2a" stroke-width="1.5"/>
+            <ellipse cx="19" cy="27" rx="5" ry="3" fill="#1a5c2a" opacity="0.8" transform="rotate(20 19 27)"/>
+          </svg>
+        </div>
+
+        <div class="mid-divider">
+          <div class="mid-bar"></div>
+          <div class="mid-gem"></div>
+          <div class="mid-bar right"></div>
+        </div>
+
+        <p class="message">
+          May this beautiful day remind you of<br>
+          just how <em>rare</em> and <em>radiant</em> you truly are.<br><br>
+          You carry grace in everything you do —<br>
+          a light that makes every room come alive.<br><br>
+          May this year overflow with joy, laughter,<br>
+          love and every blessing you deserve.
+        </p>
+
+        <div class="pog-badge">
+          <span class="pog-text">♦ &nbsp; POG Nation Family &nbsp; ♦</span>
+        </div>
+
+        <div class="music-notes-row">
+          <span class="mnote">♩</span>
+          <span class="mnote">♪</span>
+          <span class="mnote">♫</span>
+          <span class="mnote">♪</span>
+          <span class="mnote">♩</span>
+        </div>
+
+        <div class="sig-area">
+          <div class="sig-from">with love &amp; warm wishes from</div>
+          <div class="sig-name">POG Nation</div>
+        </div>
+
+        <div class="bottom-ornament">
+          <div class="b-star"></div>
+          <div class="b-star"></div>
+          <div class="b-star"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+const scene = canvas.parentElement;
+
+function resize() {
+  canvas.width = scene.offsetWidth;
+  canvas.height = scene.offsetHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const particles = [];
+const colors = ['#f0d080','#c9a84c','#fff8e0','#e8b4d0','#d4a0c0'];
+
+for (let i = 0; i < 70; i++) {
+  particles.push({
+    x: Math.random() * 800,
+    y: Math.random() * 900,
+    r: Math.random() * 1.8 + 0.3,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    speed: Math.random() * 0.4 + 0.1,
+    drift: (Math.random() - 0.5) * 0.3,
+    opacity: Math.random() * 0.6 + 0.2,
+    twinkleSpeed: Math.random() * 0.02 + 0.005,
+    twinkleOffset: Math.random() * Math.PI * 2,
+  });
+}
+
+let frame = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  frame++;
+
+  particles.forEach(p => {
+    p.y -= p.speed;
+    p.x += p.drift;
+    if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+    if (p.x < -10) p.x = canvas.width + 10;
+    if (p.x > canvas.width + 10) p.x = -10;
+
+    const twinkle = Math.sin(frame * p.twinkleSpeed + p.twinkleOffset) * 0.4 + 0.6;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = p.opacity * twinkle;
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+}
+animate();
+</script>
